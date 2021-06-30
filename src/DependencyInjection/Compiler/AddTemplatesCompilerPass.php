@@ -31,15 +31,8 @@ class AddTemplatesCompilerPass implements CompilerPassInterface
             }
 
             $definition = $container->getDefinition($id);
-
-            if (!$definition->hasMethodCall('setFormTheme')) {
-                $definition->addMethodCall('setFormTheme', [$settings['templates']['form']]);
-            }
-
-            if (!$definition->hasMethodCall('setFilterTheme')) {
-                $definition->addMethodCall('setFilterTheme', [$settings['templates']['filter']]);
-            }
-
+            $definition->addMethodCall('setFormTheme', [$settings['templates']['form']]);
+            $definition->addMethodCall('setFilterTheme', [$settings['templates']['filter']]);
             $definition->addMethodCall('setTemplate', ['pager_results', $settings['templates']['pager_results']]);
         }
     }
